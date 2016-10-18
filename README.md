@@ -4,7 +4,7 @@
 XAMARIN Forms 2.0
 
 ##Aufgabe
-TODO
+Koordinaten eines Posten auslesen und auf Karte anzeigen. Die Koordinaten werden gepsiechert, damit sie später an den Server gesendet werden können.
 
 ## Version
 0.1
