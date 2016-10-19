@@ -1,24 +1,37 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
+using Plugin.Permissions;
+using Xamarin;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace AppQuest_Schatzkarte.Droid
 {
-    [Activity(Label = "AppQuest_Schatzkarte", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
+    [Activity(Label = "AppQuest_Schatzkarte", Icon = "@drawable/icon", MainLauncher = true,
+         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
+            DependencyService.Register<IGeolocator, GeolocatorImplementation>();
+
+            Forms.Init(this, bundle);
+
+            FormsMaps.Init(this, bundle);
+
+            
+
             LoadApplication(new App());
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
-
