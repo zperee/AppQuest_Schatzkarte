@@ -22,7 +22,7 @@ namespace AppQuest_Schatzkarte.Pages
 		private Plugin.Geolocator.Abstractions.Position _position;
 		private bool _GPSAvailable;
 		private Map _map;
-		private bool _isBusy;
+		private bool _isBusy = false;
 
 		public HomePage()
 		{
@@ -61,13 +61,8 @@ namespace AppQuest_Schatzkarte.Pages
 			await GetCurrentLocation();
 			if (_GPSAvailable)
 			{
-				var pin = new Pin
-				{
-					Type = PinType.Generic,
-					Label = "",
-					Position = new Position(_position.Latitude, _position.Longitude)
-				};
-				_map.Pins.Add(pin);
+				_map.MoveToRegion(new MapSpan(_map.VisibleRegion.Center, _position.Latitude, _position.Longitude));
+				_map.IsShowingUser = true;
 			}
 			else {
 				await DisplayAlert("Fehler", "GPS nicht verfügbar", "OK");
@@ -83,17 +78,26 @@ namespace AppQuest_Schatzkarte.Pages
 
 			if (_GPSAvailable)
 			{
-				var text = NamePinInput();
-				var pin = new Pin
+				UserDialogs.Instance.Prompt(new PromptConfig
 				{
-					Type = PinType.Generic,
-					Label = text,
-					Position = new Position(_position.Latitude, _position.Longitude)
-				};
-				_map.Pins.Add(pin);
-				await SaveFile();
+					Title = "Pin Name",
+					InputType = InputType.Default,
+					OkText = "Erstellen",
+					CancelText = "Abbrechen",
+					OnAction = async result =>
+					{
+						if (!result.Ok) return;
+						var pin = new Pin();
+						pin.Type = PinType.Generic;
+						pin.Position = new Position(_position.Latitude, _position.Longitude);
+						pin.Label = result.Text;
+						_map.Pins.Add(pin);
+						await SaveFile();
+						_position = null;
+					}
+				});
 
-				_position = null;
+
 			}
 			else {
 				await DisplayAlert("Fehler", "GPS nicht verfügbar", "OK");
@@ -106,22 +110,6 @@ namespace AppQuest_Schatzkarte.Pages
 			await _localFile.WriteAllTextAsync(json);
 		}
 
-		private string NamePinInput()
-		{
-			var input = "tet";
-				UserDialogs.Instance.Prompt(new PromptConfig{
-				Title = "Pin Name",
-				InputType = InputType.Default, 
-				OkText = "Erstellen",
-				CancelText = "Abbrechen",
-				OnAction = result =>
-				{
-					if (!result.Ok) return;
-					input = result.Text;
-				}});
-			return input;
-		}
-
 		private async Task GetCurrentLocation()
 		{
 			var locator = CrossGeolocator.Current;
@@ -130,7 +118,7 @@ namespace AppQuest_Schatzkarte.Pages
 			try
 			{
 				_isBusy = true;
-				_position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+				_position = await locator.GetPositionAsync(timeoutMilliseconds: 5000);
 				_isBusy = false;
 				_GPSAvailable = true;
 
@@ -145,6 +133,16 @@ namespace AppQuest_Schatzkarte.Pages
 				_GPSAvailable = false;
 			}
 
+		}
+
+		public bool IsBusy
+		{
+			get { return _isBusy; }
+			set
+			{
+				_isBusy = value;
+				OnPropertyChanged();
+			}
 		}
 	}
 }
