@@ -11,9 +11,8 @@ namespace AppQuest_Schatzkarte.Pages
     public partial class HomePage : ContentPage
     {
         private Plugin.Geolocator.Abstractions.Position _position;
-        private bool _GPSAvailable;
         private Map _map;
-        private bool _isBusy;
+        private bool _sucess;
         public HomePage()
         {
             _map = new Map(MapSpan.FromCenterAndRadius(new Position(47.2236, 8.8180), Distance.FromMeters(500)));
@@ -21,10 +20,10 @@ namespace AppQuest_Schatzkarte.Pages
             InitializeComponent();
         }
 
-        public async void OnLocateClicked(object sender, EventArgs e)
+        public void OnLocateClicked(object sender, EventArgs e)
         {
             GetCurrentLocation();
-            if (_GPSAvailable)
+            if (_sucess)
             {
                 var pin = new Pin
                 {
@@ -33,17 +32,16 @@ namespace AppQuest_Schatzkarte.Pages
                     Position = new Position(_position.Latitude, _position.Longitude)
                 };
                 _map.Pins.Add(pin);
-            } else {
-                await DisplayAlert("Fehler", "GPS nicht verfügbar", "OK");
-            }          
+                _sucess = false;
+            }            
         }
 
-        private async void OnAddNewPinClicked(object sender, EventArgs e)
+        private void OnAddNewPinClicked(object sender, EventArgs e)
         {
             if (_position == null)
             {
                 GetCurrentLocation();
-                if (_GPSAvailable)
+                if (_sucess)
                 {
                     var pin = new Pin
                     {
@@ -53,10 +51,11 @@ namespace AppQuest_Schatzkarte.Pages
                     };
                     _map.Pins.Add(pin);
                     _position = null;
-                } else {
-                    await DisplayAlert("Fehler", "GPS nicht verfügbar", "OK");
                 }
-            } else {
+                _sucess = false;
+            }
+            else
+            {
                 var pin = new Pin
                 {
                     Type = PinType.SavedPin,
@@ -65,32 +64,32 @@ namespace AppQuest_Schatzkarte.Pages
                 };
                 _map.Pins.Add(pin);
                 _position = null;
-            }  
+            }
+            
         }
 
         private async void GetCurrentLocation()
         {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 5;
-
+            
             try
             {
-                _isBusy = true;
                 _position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-                _isBusy = false;
-                _GPSAvailable = true;
-
-                if (_position == null)
-                {
-                    _GPSAvailable = false;
-                }
+                _sucess = true;
             }
             catch (Exception)
             {
                 _position = null;
-                _GPSAvailable = false;
+                _sucess = false;
             }
-           
+
+            if (_position == null)
+            {
+                await DisplayAlert("Fehler", "GPS nicht verfügbar", "OK");
+                
+            }
+            
         }
     }
 }

@@ -7,5 +7,4 @@
     <ToolbarItem Clicked="OnLocateClicked" Order="Secondary" Priority="0" Text="Locate me" />
     <ToolbarItem Clicked="OnAddNewPinClicked" Order="Secondary" Priority="1" Text="Set marker" />
   </ContentPage.ToolbarItems>
-  <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" VerticalOptions="Center" HorizontalOptions="Center"/>
 </ContentPage>
