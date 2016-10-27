@@ -169,14 +169,18 @@ namespace AppQuest_Schatzkarte.Pages
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 5;
 
-            try
-            {
-                return await locator.GetPositionAsync(5000);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+			if (locator.IsGeolocationEnabled)
+			{
+				try
+				{
+					return await locator.GetPositionAsync(10000);
+				}
+				catch (Exception)
+				{
+					return null;
+				}
+			}
+			return null;
         }
 
         private void OnSyncButtonClicked(object sender, EventArgs e)

@@ -191,6 +191,14 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\locate.png" />
+    <AndroidResource Include="Resources\drawable\pin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\locate.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pin.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\locate.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pin.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\locate.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\pin.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
