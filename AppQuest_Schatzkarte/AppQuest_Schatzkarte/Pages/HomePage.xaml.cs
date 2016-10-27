@@ -119,7 +119,7 @@ namespace AppQuest_Schatzkarte.Pages
                     InputType = InputType.Default,
                     OkText = "Erstellen",
                     CancelText = "Abbrechen",
-                    OnAction = async result =>
+                    OnAction = result =>
                     {
                         if (!result.Ok) return;
                         var pin = new Pin
