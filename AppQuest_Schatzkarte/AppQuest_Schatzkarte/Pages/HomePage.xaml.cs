@@ -40,7 +40,8 @@ namespace AppQuest_Schatzkarte.Pages
         {
             base.OnAppearing();
 
-            await FillPinsAsync();
+            if(_map.Pins.Count == 0)
+                await FillPinsAsync();
         }
 
         /// <summary>
@@ -72,6 +73,8 @@ namespace AppQuest_Schatzkarte.Pages
                 var pin = (Pin)sender;
                 Device.BeginInvokeOnMainThread(() => _map.Pins.Remove(pin));
                 await PrepareListForLocalFileAsync();
+                _map.Pins.Clear();
+                await FillPinsAsync();
             }            
         }
 
@@ -125,8 +128,9 @@ namespace AppQuest_Schatzkarte.Pages
                             Position = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude),
                             Label = result.Text
                         };
+                        pin.Clicked += Pin_Clicked;
                         _map.Pins.Add(pin);
-                        await PrepareListForLocalFileAsync();
+                        
                     }
                 });                
             }
