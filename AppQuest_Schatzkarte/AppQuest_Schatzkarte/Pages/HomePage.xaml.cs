@@ -67,10 +67,11 @@ namespace AppQuest_Schatzkarte.Pages
 
         private async void Pin_Clicked(object sender, EventArgs e)
         {
-            if (await DisplayAlert("Pin löschen?", "Wollen Sie den Pin wirklich löschen?", "Ja", "Nein")) ;
+            if (await DisplayAlert("Pin löschen?", "Wollen Sie den Pin wirklich löschen?", "Ja", "Nein"))
             {
                 var pin = (Pin)sender;
-                _map.Pins.Remove(pin);
+                Device.BeginInvokeOnMainThread(() => _map.Pins.Remove(pin));
+                await PrepareListForLocalFileAsync();
             }            
         }
 
