@@ -18,6 +18,19 @@ Software Developer
 [Homepage](http://eliaperenzin.ch/)  
 Software Developer
 
+## Plugins
+### List from used plugins
+_not all plugins_
+[Acr.Support](https://github.com/aritchie/support)
+[Acr.UserDialogs](https://github.com/aritchie/userdialogs)
+[AndHUD](https://github.com/Redth/AndHUD)
+[Newtonsoft.Json](http://www.newtonsoft.com/json)
+[PCLStorage](https://github.com/dsplaisted/PCLStorage)
+[Plugin.CurrentActivity](https://github.com/jamesmontemagno/Xamarin.Plugins)
+[Xam.Plugin.Geolocator](https://github.com/jamesmontemagno/xamarin.plugins)
+[Xamarin.Forms.Maps](http://xamarin.com/forms)
+
+
 ## Functions
 ###[Infrastructure/FileSaver.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Infrastructure/FileSaver.cs)
 
