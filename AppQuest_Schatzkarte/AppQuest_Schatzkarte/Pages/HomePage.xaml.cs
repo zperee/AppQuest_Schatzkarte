@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
@@ -24,7 +25,8 @@ namespace AppQuest_Schatzkarte.Pages
         {
             _map =
                 new Map(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(47.2236, 8.8180),
-                    Distance.FromMeters(500)));
+                    Distance.FromMeters(500)));            
+
             _fileSaver = new FileSaver("Data.json", "LocalData");
 
             Content = _map;
@@ -50,7 +52,26 @@ namespace AppQuest_Schatzkarte.Pages
             if (string.IsNullOrEmpty(json)) return;
             var list = JsonConvert.DeserializeObject<IEnumerable<TreasurePin>>(json);
             foreach (var item in list)
-                _map.Pins.Add(new Pin { Type = PinType.Generic, Label = item.Label, Position = new Xamarin.Forms.Maps.Position(item.Latitude, item.Longitude)});
+            {
+                var pin = new Pin
+                {
+                    Type = PinType.Generic,
+                    Label = item.Label,
+                    Position = new Xamarin.Forms.Maps.Position(item.Latitude, item.Longitude)                    
+                };
+                pin.Clicked += Pin_Clicked;
+                _map.Pins.Add(pin);
+            }
+                
+        }
+
+        private async void Pin_Clicked(object sender, EventArgs e)
+        {
+            if (await DisplayAlert("Pin löschen?", "Wollen Sie den Pin wirklich löschen?", "Ja", "Nein")) ;
+            {
+                var pin = (Pin)sender;
+                _map.Pins.Remove(pin);
+            }            
         }
 
         /// <summary>
