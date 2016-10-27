@@ -19,24 +19,69 @@ Software Developer
 Software Developer
 
 ## Functions
-#[Infrastructure/FileSaver.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Infrastructure/FileSaver.cs)
+###[Infrastructure/FileSaver.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Infrastructure/FileSaver.cs)
 
 **Create and open the local file**  
 `return: Task<string>`
 ```C#
-private async Task<IFile> AssureFileExistsAsync()
+private async Task<IFile> AssureFileExistsAsync() {}
 ```
 
 **Read the content from the local file**
 ```C#
-private async Task<IFile> AssureFileExistsAsync()
+private async Task<IFile> AssureFileExistsAsync() {}
 ```
 
 **Save the pins from the map into the local file**  
 `params: IList<T>`
 ```C#
-SaveContentToLocalFileAsync<T>(IList<T> content)
+SaveContentToLocalFileAsync<T>(IList<T> content) {}
 ```
+###[Pages/HomePage.xaml.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Pages/HomePage.xaml.cs)
+
+>#### Async metods
+**Fill the Pins with data from the local file**
+```C#
+public async Task FillPinsAsync() {}
+```
+
+**Prepare the string in JSON-Format for the local file**
+```C#
+public async Task PrepareListForLocalFileAsync() {}
+```
+
+**Gets your actual position with an accuracy of 5m**
+```C#
+private async Task<Position> GetCurrentLocationAsync() {}
+```
+
+>#### Button Listener
+**Pin delete click Listener**
+```C#
+private async void Pin_Clicked(object sender, EventArgs e) {}
+```
+
+**Locate me button click Listener**
+```C#
+public async void OnLocateClicked(object sender, EventArgs e) {}
+```
+
+**Add new pin button click Listener**
+```C#
+private async void OnAddNewPinClicked(object sender, EventArgs e) {}
+```
+
+**Sync button click Listener**
+**Sync the data with the AppQuest LogBuch app**
+```C#
+private void OnSyncButtonClicked(object sender, EventArgs e) {}
+```
+
+**On all Pins button click Listener**
+```C#
+private void OnAllPinsButtonClicked(object sender, EventArgs e) {}
+```
+
 
 ## Errors
 ### Error #1: FileSaver.cs: Property is null or emtpy
