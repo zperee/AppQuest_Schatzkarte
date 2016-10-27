@@ -22,7 +22,7 @@ Software Developer
 #[Infrastructure/FileSaver.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Infrastructure/FileSaver.cs)
 
 **Create and open the local file**  
-> return: Task<string>  
+`return: Task<string>`
 ```C#
 private async Task<IFile> AssureFileExistsAsync()
 ```
@@ -33,7 +33,7 @@ private async Task<IFile> AssureFileExistsAsync()
 ```
 
 **Save the pins from the map into the local file**  
-> params: IList<T>  
+`params: IList<T>`
 ```C#
 SaveContentToLocalFileAsync<T>(IList<T> content)
 ```
