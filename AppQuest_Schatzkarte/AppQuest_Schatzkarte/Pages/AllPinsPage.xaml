@@ -4,7 +4,12 @@
 		<ListView x:Name="lstView">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding lable}" Detail="{Binding coordinates}"/>
+					<TextCell Text="{Binding lable}" Detail="{Binding coordinates}">
+						<ViewCell.ContextActions>  
+                            <MenuItem Clicked="OnDeleteItem" CommandParameter="{Binding .}"
+                            Text="Delete Item" IsDestructive="True" />
+                     </ViewCell.ContextActions>
+					</TextCell>
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
