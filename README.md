@@ -63,8 +63,8 @@ public async Task FillPinsAsync() {}
 public async Task PrepareListForLocalFileAsync() {}
 ```
 
-**Gets your actual position with an accuracy of 5m**
-`return: Task<Position>`
+**Gets your actual position with an accuracy of 5m**  
+`return: Task<Position>`  
 ```C#
 private async Task<Position> GetCurrentLocationAsync() {}
 ```
