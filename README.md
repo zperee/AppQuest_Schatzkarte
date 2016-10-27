@@ -20,7 +20,7 @@ Software Developer
 
 ## Plugins
 ### List from used plugins
-_not all plugins_
+_not all plugins_  
 [Acr.Support](https://github.com/aritchie/support)  
 [Acr.UserDialogs](https://github.com/aritchie/userdialogs)  
 [AndHUD](https://github.com/Redth/AndHUD)  
