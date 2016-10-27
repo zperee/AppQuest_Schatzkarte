@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using AppQuest_Schatzkarte.Infrastructure;
 using AppQuest_Schatzkarte.Model;
+using AppQuest_Schatzkarte.Services;
 using Newtonsoft.Json;
 using Plugin.Geolocator;
 using Xamarin.Forms;
@@ -150,5 +152,25 @@ namespace AppQuest_Schatzkarte.Pages
                 return null;
             }
         }
+
+        private void OnSyncButtonClicked(object sender, EventArgs e)
+        {
+            
+            var list = new List<TreasurePoint>();
+            foreach (var pin in _map.Pins)
+            {
+                var treasurePoint = new TreasurePoint
+                {                    
+                    Latitude = pin.Position.Latitude,
+                    Longitude = pin.Position.Longitude
+                };
+                list.Add(treasurePoint);
+            }
+            
+            var logBuch = DependencyService.Get<ILogBuchService>();
+
+            var json = JsonConvert.SerializeObject(list);
+            logBuch.OpenLogBuch("Schatzkarte", json, "points");
+        }   
     }
 }

@@ -6,5 +6,6 @@
   <ContentPage.ToolbarItems>
     <ToolbarItem Clicked="OnLocateClicked" Order="Secondary" Priority="0" Text="Locate me" />
     <ToolbarItem Clicked="OnAddNewPinClicked" Order="Secondary" Priority="1" Text="Set marker" />
+    <ToolbarItem Clicked="OnSyncButtonClicked" Order="Secondary" Priority="2" Text="Send to server" />
   </ContentPage.ToolbarItems>
 </ContentPage>
