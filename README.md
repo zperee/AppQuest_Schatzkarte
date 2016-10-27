@@ -39,7 +39,7 @@ SaveContentToLocalFileAsync<T>(IList<T> content) {}
 ```
 ###[Pages/HomePage.xaml.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Pages/HomePage.xaml.cs)
 
-#### Async metods
+### Async metods
 **Fill the Pins with data from the local file**
 ```C#
 public async Task FillPinsAsync() {}
@@ -55,7 +55,7 @@ public async Task PrepareListForLocalFileAsync() {}
 private async Task<Position> GetCurrentLocationAsync() {}
 ```
 
-#### Button Listener
+### Button Listener
 **Pin delete click Listener**
 ```C#
 private async void Pin_Clicked(object sender, EventArgs e) {}
