@@ -22,7 +22,7 @@ Software Developer
 #[Infrastructure/FileSaver.cs](https://github.com/zperee/AppQuest_Schatzkarte/blob/master/AppQuest_Schatzkarte/AppQuest_Schatzkarte/Infrastructure/FileSaver.cs)
 
 **Create and open the local file**
-***return: Task<string>
+***return: Task<string>***
 ```C#
 private async Task<IFile> AssureFileExistsAsync()
 ```
@@ -33,15 +33,15 @@ private async Task<IFile> AssureFileExistsAsync()
 ```
 
 **Save the pins from the map into the local file**
-***params: IList<T>
+***params: IList<T>***
 ```C#
 SaveContentToLocalFileAsync<T>(IList<T> content)
 ```
 
 ## Errors
-# Error #1: FileSaver.cs: Property is null or emtpy
+### Error #1: FileSaver.cs: Property is null or emtpy
 This error can occured when the filesystem hasn't found the folder/file. 
 
-# Error #2: Homepage.xaml.cs: No GPS Signal avaiable
+### Error #2: Homepage.xaml.cs: No GPS Signal avaiable
 Maybe the GPS is disabled in your phone-settings. 
 => Turn on GPS. 
