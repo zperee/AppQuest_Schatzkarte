@@ -32,9 +32,5 @@ namespace AppQuest_Schatzkarte
 				data.Add(new AllPinsViewModel() { lable = pin.Label, coordinates = pin.Latitude + " " + pin.Longitude});
 			}
 		}
-
-		public async void OnDeleteItem(object sender, EventArgs e)
-		{
-		}
 	}
 }
