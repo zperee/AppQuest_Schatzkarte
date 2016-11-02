@@ -1,4 +1,5 @@
-# AppQuest_Schatzkarte ![data](https://img.shields.io/badge/Status-development-orange.svg)
+# AppQuest_Schatzkarte [![Build status](https://ci.appveyor.com/api/projects/status/qrklh2gukfuvnp5c?svg=true)](https://ci.appveyor.com/project/zperee/appquest-schatzkarte)
+
 
 ##Technologie
 XAMARIN Forms 2.0
