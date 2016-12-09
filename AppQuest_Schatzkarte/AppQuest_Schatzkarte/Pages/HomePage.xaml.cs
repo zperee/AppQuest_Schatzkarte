@@ -113,26 +113,24 @@ namespace AppQuest_Schatzkarte.Pages
 
             if (position != null)
             {
-                UserDialogs.Instance.Prompt(new PromptConfig
+               var result = await UserDialogs.Instance.PromptAsync(new PromptConfig
                 {
                     Title = "Pin Name",
                     InputType = InputType.Default,
                     OkText = "Erstellen",
                     CancelText = "Abbrechen",
-                    OnAction = result =>
-                    {
-                        if (!result.Ok) return;
-                        var pin = new Pin
-                        {
-                            Type = PinType.Generic,
-                            Position = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude),
-                            Label = result.Text
-                        };
-                        pin.Clicked += Pin_Clicked;
-                        _map.Pins.Add(pin);
-                        
-                    }
-                });                
+                   
+                });
+                if (!result.Ok) return;
+                var pin = new Pin
+                {
+                    Type = PinType.Generic,
+                    Position = new Xamarin.Forms.Maps.Position(position.Latitude, position.Longitude),
+                    Label = result.Text
+                };
+                pin.Clicked += Pin_Clicked;
+                _map.Pins.Add(pin);
+                await PrepareListForLocalFileAsync();
             }
             else
             {
